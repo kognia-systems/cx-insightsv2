@@ -11,64 +11,33 @@
           class="w-100 needs-validation"
         >
           <h3 class="form-title text-secondary">Iniciar sesión</h3>
-          <div class="mb-3">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input
-              id="email"
-              type="email"
-              class="form-control"
-              [class.is-invalid]="email?.touched && email?.invalid"
-              [class.is-valid]="email?.touched && email?.valid"
-              formControlName="email"
-              placeholder="tucorreo@domain.com"
-              required
-            />
-            <div *ngIf="email?.touched && email?.invalid" class="invalid-feedback">
-              <small *ngIf="email?.errors?.['required']" class="text-danger">* El correo es obligatorio</small>
-              <small *ngIf="email?.errors?.['email']" class="text-danger">Ingresa un correo válido</small>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input
-              id="password"
-              type="password"
-              class="form-control"
-              [class.is-invalid]="password?.touched && password?.invalid"
-              [class.is-valid]="password?.touched && password?.valid"
-              formControlName="password"
-              placeholder="Ingresa tu contraseña"
-              required
-            />
-            <div *ngIf="password?.touched && password?.invalid" class="invalid-feedback">
-              <small *ngIf="password?.errors?.['required']" class="text-danger">* La contraseña es obligatoria</small>
-              <small *ngIf="password?.errors?.['minlength']" class="text-danger">
-                * La contraseña es muy corta, mínimo {{ password?.errors?.['minlength'].requiredLength }}
-              </small>
-            </div>
-          </div>
+
+          <email-input [control]="email!"></email-input>
+
+          <password-input
+            [control]="password!"
+            [type]="showPassword ? 'text' : 'password'"
+          ></password-input>
+
           <div class="form-check mb-3">
             <input
               class="form-check-input"
               type="checkbox"
-              value=""
-              id="invalidCheck"
-              required
+              id="togglePassword"
+              (change)="showPassword = !showPassword"
+              name="showPassword"
             />
-            <label class="form-check-label" for="invalidCheck">
+            <label class="form-check-label" for="togglePassword">
               Mostrar contraseña
             </label>
-            <div class="invalid-feedback">
-              You must agree before submitting.
-            </div>
           </div>
           <button type="submit" class="btn btn-primary text-white w-100">
             Ingresar
           </button>
         </form>
         <a
-          [routerLink]="'auth/reset-password'"
-          class="mt-3 text-decoration-none text-cyan"
+          routerLink="/auth/reset-password"
+          class="mt-3 text-secondary"
           >¿Olvidaste la contaseña?</a
         >
       </div>
