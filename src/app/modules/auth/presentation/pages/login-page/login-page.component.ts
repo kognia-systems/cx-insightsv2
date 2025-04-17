@@ -24,29 +24,31 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
-  loginForm: FormGroup;
+  form: FormGroup;
 
   constructor(private router: Router, private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
+    this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      console.log('Login info:', { email, password });
-    } else {
-      this.loginForm.markAllAsTouched();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      console.error('Error', this.form.get('password')?.errors);
+      console.error('Form no válido', this.form.errors);
+      return;
     }
+    const { email, password } = this.form.value;
+    console.log('Form válido', this.form.value);
   }
 
   get email() {
-    return this.loginForm.get('email');
+    return this.form.get('email');
   }
 
   get password() {
-    return this.loginForm.get('password');
+    return this.form.get('password');
   }
 }

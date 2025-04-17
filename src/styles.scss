@@ -34,6 +34,7 @@ $cx-light-grey3: #E7E7E9;
 $custom-colors: (
   "primary-kognia": #00FFFF,
   "secondary-kognia": #FF39EF,
+  "cyan": cyan,
   "cx-text": #191919,
   "cx-hint": #FAFAFA,
   "cx-blue": #15263A,
@@ -58,13 +59,19 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   color: $cx-text;
 }
 
-html {
-  font-size: 1rem;
-}
-
 label {
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.btn {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+input::placeholder {
+  color: $cx-light-grey !important;
+  font-size: 0.9rem;
 }
 
 

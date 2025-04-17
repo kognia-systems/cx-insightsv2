@@ -3,46 +3,64 @@
     <!-- Left Container -->
     <div class="col-md-5">
       <div
-        class="col-md-8 offset-2 d-flex flex-column justify-content-center align-items-center h-100 px-4"
+        class="col col-lg-10 mx-auto d-flex flex-column justify-content-center align-items-center h-100 px-4"
       >
         <form
-          [formGroup]="loginForm"
+          [formGroup]="form"
           (ngSubmit)="onSubmit()"
-          class="w-75 needs-validation"
+          class="w-100 needs-validation"
         >
-          <h2 class="fw-bold">Bienvenido de nuevo!</h2>
           <h3 class="form-title text-secondary">Iniciar sesión</h3>
           <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico</label>
             <input
-              type="email"
               id="email"
+              type="email"
               class="form-control"
+              [class.is-invalid]="email?.touched && email?.invalid"
+              [class.is-valid]="email?.touched && email?.valid"
               formControlName="email"
               placeholder="tucorreo@domain.com"
-              autocomplete="off"
+              required
             />
-            <div class="invalid-feedback">
-              <div *ngIf="email?.errors?.['required']">El email es obligatorio.</div>
-              <div *ngIf="email?.errors?.['email']">El formato del email no es válido.</div>
+            <div *ngIf="email?.touched && email?.invalid" class="invalid-feedback">
+              <small *ngIf="email?.errors?.['required']" class="text-danger">* El correo es obligatorio</small>
+              <small *ngIf="email?.errors?.['email']" class="text-danger">Ingresa un correo válido</small>
             </div>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
             <input
-              type="password"
               id="password"
+              type="password"
               class="form-control"
+              [class.is-invalid]="password?.touched && password?.invalid"
+              [class.is-valid]="password?.touched && password?.valid"
               formControlName="password"
               placeholder="Ingresa tu contraseña"
+              required
             />
-            <small
-              class="invalid-feedback"
-              *ngIf="loginForm.get('password')?.touched &&
-                loginForm.get('password')?.invalid">
-              <span *ngIf="loginForm.get('password')?.errors?.['required']">Campo obligatorio.</span>
-              <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</span>
-            </small>
+            <div *ngIf="password?.touched && password?.invalid" class="invalid-feedback">
+              <small *ngIf="password?.errors?.['required']" class="text-danger">* La contraseña es obligatoria</small>
+              <small *ngIf="password?.errors?.['minlength']" class="text-danger">
+                * La contraseña es muy corta, mínimo {{ password?.errors?.['minlength'].requiredLength }}
+              </small>
+            </div>
+          </div>
+          <div class="form-check mb-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="invalidCheck"
+              required
+            />
+            <label class="form-check-label" for="invalidCheck">
+              Mostrar contraseña
+            </label>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
           </div>
           <button type="submit" class="btn btn-primary text-white w-100">
             Ingresar
@@ -50,7 +68,7 @@
         </form>
         <a
           [routerLink]="'auth/reset-password'"
-          class="mt-3 text-decoration-none text-primary-kognia"
+          class="mt-3 text-decoration-none text-cyan"
           >¿Olvidaste la contaseña?</a
         >
       </div>
@@ -59,6 +77,7 @@
     <div class="col-md-7 right-container-decoration rounded-start-4">
       <div class="right-container w-100 h-100 d-flex flex-column">
         <img
+          alt="Kognia Logo"
           src="svg/kognia-logo-hor-dark.svg"
           width="200"
           class="align-self-start m-4"
