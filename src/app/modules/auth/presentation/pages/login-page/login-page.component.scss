@@ -1,0 +1,25 @@
+.right-container {
+  background-image: url("/img/waves.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  /* Trucos de nitidez visual */
+  image-rendering: optimizeQuality;  /* útil para gráficos pixelados */
+}
+
+.right-container-decoration {
+  background: linear-gradient(
+    to bottom,
+    #0c0c0c 0%,
+    #111c2d 40%,
+    #111c2d 60%,
+    #0c0c0c 100%
+  );
+  background-blend-mode: overlay;
+}
+
+.form-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+}

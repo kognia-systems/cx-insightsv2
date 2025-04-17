@@ -1,0 +1,15 @@
+@import '../../../../../styles';
+
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: $primary;
+  font-size: 4rem;
+  font-weight: 500;
+  span {
+    font-family: 'Roboto', sans-serif;
+    color: $white;
+    font-weight: 600;
+    font-size: 3rem;
+  }
+}

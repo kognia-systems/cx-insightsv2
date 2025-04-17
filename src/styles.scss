@@ -1,0 +1,70 @@
+// Definir variables predeterminadas necesarias
+$primary: #ff39ef;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+$primary-kognia: #00FFFF;
+$secondary-kognia: #FF39EF;
+$cx-text: #191919;
+$cx-blue: #0C0C0C;
+$cx-hint: #FAFAFA;
+$cx-dark: #111C2D;
+$cx-dark-blue: #0C0C0C;
+$cx-light-grey: #B8B6BE;
+$cx-light-grey2: #D0CFD4;
+$cx-light-grey3: #E7E7E9;
+
+// Custom colors
+$custom-colors: (
+  "primary-kognia": #00FFFF,
+  "secondary-kognia": #FF39EF,
+  "cx-text": #191919,
+  "cx-hint": #FAFAFA,
+  "cx-blue": #15263A,
+  "cx-dark-blue": #111C2D,
+  "cx-dark": #0C0C0C,
+  "cx-light-grey": #B8B6BE,
+  "cx-light-grey2": #D0CFD4,
+  "cx-light-grey3": #E7E7E9,
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Required
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: $cx-text;
+}
+
+html {
+  font-size: 1rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
