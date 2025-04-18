@@ -10,7 +10,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
 import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
 import { ToastrService } from 'ngx-toastr';
-import { SessionService } from 'src/app/core/shared/services/session.service';
+import { LocalStorageService } from 'src/app/core/shared/services/local-storage.service';
 import { UsersService } from 'src/app/modules/users/infrastructure/services/users.service';
 
 @Component({
@@ -32,18 +32,18 @@ export class OtpPageComponent {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private sessionService: SessionService,
+    private localStorageService: LocalStorageService,
     private userService: UsersService,
     private toastService: ToastrService
   ) {
     this.form = this.fb.group({
       otp: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.pattern(/^\d+$/),
-      ],
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern(/^\d+$/),
+        ],
       ],
     });
   }
@@ -57,7 +57,7 @@ export class OtpPageComponent {
     const { otp } = this.form.value;
 
     try {
-      const userId = sessionStorage.getItem('userId');
+      const userId = this.localStorageService.getUserId();
 
       if (!userId) {
         this.toastService.error('No se encontró el ID de usuario');
@@ -67,7 +67,8 @@ export class OtpPageComponent {
       this.userService.getUserById(userId).subscribe({
         next: (user) => {
           if (user) {
-            this.sessionService.setUser(user);
+            this.localStorageService.setUser(user);
+            this.localStorageService.clearUserId();
 
             this.toastService.success('Bienvenido a la aplicación');
 

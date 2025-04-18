@@ -15,6 +15,7 @@ import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/
 import { AuthService } from '@auth/auth.service';
 import { UsersService } from 'src/app/modules/users/infrastructure/services/users.service';
 import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from 'src/app/core/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-login-page',
@@ -40,7 +41,8 @@ export class LoginPageComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private userService: UsersService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private localStorageService: LocalStorageService,
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -60,7 +62,7 @@ export class LoginPageComponent {
       const userCredentials = await this.authService.login(email, password);
 
       if (userCredentials) {
-        localStorage.setItem('userId', userCredentials.user.uid);
+        this.localStorageService.setUserId(userCredentials.user.uid);
         this.toastService.success(
           'Se ha enviado un código de verificación a tu correo',
           'OTP Enviado'
