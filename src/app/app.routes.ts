@@ -8,22 +8,56 @@ export const routes: Routes = [
         path: 'login',
         loadComponent: () =>
           import(
-            '@auth/pages/login-page/login-page.component'
+            '@auth/login-page/login-page.component'
           ).then((m) => m.LoginPageComponent),
       },
       {
         path: 'reset-password',
         loadComponent: () =>
           import(
-            '@auth/pages/reset-password-page/reset-password-page.component'
+            '@auth/reset-password-page/reset-password-page.component'
           ).then((m) => m.ResetPasswordPageComponent),
       },
       {
         path: 'otp-verification',
         loadComponent: () =>
           import(
-            '@auth/pages/otp-page/otp-page.component'
+            '@auth/otp-page/otp-page.component'
           ).then((m) => m.OtpPageComponent),
+      },
+    ],
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./core/shared/dashboard/shell/shell.component').then(
+        (m) => m.ShellComponent
+      ),
+    children: [
+      {
+        path: 'users',
+        loadComponent: () =>
+          import(
+            '@users/user-list-page/user-list-page.component'
+          ).then((m) => m.UserListPageComponent),
+      },
+      {
+        path: 'users/create',
+        loadComponent: () =>
+          import(
+            '@users/user-create-page/user-create-page.component'
+          ).then((m) => m.UserCreatePageComponent),
+      },
+      {
+        path: 'users/:id/edit',
+        loadComponent: () =>
+          import(
+            '@users/user-edit-page/user-edit-page.component'
+          ).then((m) => m.UserEditPageComponent),
+      },
+      {
+        path: '**',
+        redirectTo: '/dashboard/users',
       },
     ],
   },

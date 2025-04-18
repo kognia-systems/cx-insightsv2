@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '@auth/services/auth.service';
+import { AuthService } from '@auth/auth.service';
 import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
 import { EmailInputComponent } from '@components/email-input/email-input.component';
 import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';

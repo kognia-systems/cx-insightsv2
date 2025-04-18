@@ -25,11 +25,12 @@
       "@environments/*": [
         "src/environments/*"
       ],
-      "@auth/pages/*": [
-        "src/app/modules/auth/presentation/pages/*"
-      ],
-      "@auth/services/*": [
+      "@auth/*": [
+        "src/app/modules/auth/presentation/pages/*",
         "src/app/modules/auth/infrastructure/services/*"
+      ],
+      "@users/*": [
+        "src/app/modules/users/presentation/pages/*"
       ],
       "@components/*": [
         "src/app/core/shared/components/*"

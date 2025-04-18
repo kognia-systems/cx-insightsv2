@@ -12,7 +12,7 @@ import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
 import { EmailInputComponent } from '@components/email-input/email-input.component';
 import { PasswordInputComponent } from '@components/password-input/password-input.component';
 import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
-import { AuthService } from '@auth/services/auth.service';
+import { AuthService } from '@auth/auth.service';
 import { UsersService } from 'src/app/modules/users/infrastructure/services/users.service';
 import { ToastrService } from 'ngx-toastr';
 
