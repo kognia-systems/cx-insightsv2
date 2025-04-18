@@ -1,25 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmailInputComponent } from './email-input.component';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { PasswordInputComponent } from './password-input.component';
 
-describe('EmailInputComponent', () => {
-  let component: EmailInputComponent;
-  let fixture: ComponentFixture<EmailInputComponent>;
+describe('PasswordInputComponent', () => {
+  let component: PasswordInputComponent;
+  let fixture: ComponentFixture<PasswordInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmailInputComponent, ReactiveFormsModule],
+      imports: [PasswordInputComponent, ReactiveFormsModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EmailInputComponent);
+    fixture = TestBed.createComponent(PasswordInputComponent);
     component = fixture.componentInstance;
 
     // 👇 Importante: asigna el FormControl antes de detectChanges
     component.control = new FormControl('', [
       Validators.required,
-      Validators.email,
+      Validators.minLength(6),
     ]);
 
     fixture.detectChanges();
@@ -28,18 +28,18 @@ describe('EmailInputComponent', () => {
   it('should render component', () => {
     const input = fixture.debugElement.query(By.css('input'));
     expect(input).toBeTruthy();
-    expect(input.nativeElement.type).toBe('email');
+    expect(input.nativeElement.type).toBe('password');
   });
 
   it('should render an error if field has been touched and invalid', () => {
     component.control.markAsTouched();
-    component.control.setValue('correo-invalido');
+    component.control.setValue('1234');
     fixture.detectChanges();
 
     const errorMsg = fixture.debugElement.query(By.css('.invalid-feedback'));
     expect(errorMsg).toBeTruthy();
     expect(errorMsg.nativeElement.textContent).toContain(
-      'Ingresa un correo válido'
+      'La contraseña es muy corta'
     );
   });
 
@@ -51,12 +51,12 @@ describe('EmailInputComponent', () => {
     const errorMsg = fixture.debugElement.query(By.css('.invalid-feedback'));
     expect(errorMsg).toBeTruthy();
     expect(errorMsg.nativeElement.textContent).toContain(
-      '* El correo es obligatorio'
+      '* La contraseña es obligatoria'
     );
   });
 
   it('should not render errors if field is valid', () => {
-    component.control.setValue('usuario@correo.com');
+    component.control.setValue('123456');
     component.control.markAsTouched();
     fixture.detectChanges();
 

@@ -1,4 +1,6 @@
 export const environment = {
+  production: true,
+  baseUrl: 'https://func-cx-insights-dev.azurewebsites.net/api',
   firebaseConfig: {
     apiKey: 'AIzaSyB_6wmd0b0tn0UtnrE9npE4CpsYT6wEMJ8',
     authDomain: 'cx-insights-f552b.firebaseapp.com',

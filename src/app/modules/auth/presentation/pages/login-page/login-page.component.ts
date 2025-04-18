@@ -6,12 +6,15 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { CxLogoComponent } from '../../../../../core/shared/components/cx-logo/cx-logo.component';
-import { WelcomeAnimatedTextComponent } from 'src/app/core/shared/components/welcome-animated-text/welcome-animated-text.component';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { EmailInputComponent } from "../../../../../core/shared/components/email-input/email-input.component";
-import { PasswordInputComponent } from "../../../../../core/shared/components/password-input/password-input.component";
+import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
+import { EmailInputComponent } from '@components/email-input/email-input.component';
+import { PasswordInputComponent } from '@components/password-input/password-input.component';
+import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
+import { AuthService } from '@auth/services/auth.service';
+import { UsersService } from 'src/app/modules/users/infrastructure/services/users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-page',
@@ -23,8 +26,8 @@ import { PasswordInputComponent } from "../../../../../core/shared/components/pa
     CxLogoComponent,
     WelcomeAnimatedTextComponent,
     EmailInputComponent,
-    PasswordInputComponent
-],
+    PasswordInputComponent,
+  ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
@@ -32,22 +35,50 @@ export class LoginPageComponent {
   form: FormGroup;
   showPassword = false;
 
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private userService: UsersService,
+    private toastService: ToastrService
+  ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  onSubmit(): void {
+  async onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      console.error('Error', this.form.get('password')?.errors);
-      console.error('Form no válido', this.form.errors);
       return;
     }
+
     const { email, password } = this.form.value;
-    console.log('Form válido', this.form.value);
+
+    try {
+      const userCredentials = await this.authService.login(email, password);
+
+      if (userCredentials) {
+        this.router.navigate(['/dashboard']);
+        this.userService.getUserById(userCredentials.user.uid).subscribe({
+          next: (user) => {
+            if (user) {
+              console.log(user);
+
+              sessionStorage.setItem('user', JSON.stringify(user));
+
+              this.toastService.success('Bienvenido a la aplicación');
+              this.router.navigate(['/dashboard']);
+            }
+          },
+        });
+      }
+    } catch (error) {
+      this.toastService.error(
+        'Error al iniciar sesión, por favor verifica tus credenciales'
+      );
+    }
   }
 
   get email() {
@@ -56,5 +87,14 @@ export class LoginPageComponent {
 
   get password() {
     return this.form.get('password') as FormControl;
+  }
+
+  private getErrorMessage(code: string): string {
+    const map: Record<string, string> = {
+      'auth/user-not-found': 'Usuario no encontrado',
+      'auth/wrong-password': 'Contraseña incorrecta',
+      'auth/invalid-email': 'Correo inválido',
+    };
+    return map[code] ?? 'Error al iniciar sesión';
   }
 }

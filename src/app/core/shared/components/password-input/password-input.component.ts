@@ -10,11 +10,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   templateUrl: './password-input.component.html',
-  styleUrl: './password-input.component.scss'
+  styles: ``
 })
 export class PasswordInputComponent {
   @Input() control!: FormControl;
   @Input() type: string = 'password';
   @Input() label: string = 'Contraseña';
-  @Input() placeholder: string = 'Ingresa tu contraseña';
+  @Input() placeholder: string = '******';
 }

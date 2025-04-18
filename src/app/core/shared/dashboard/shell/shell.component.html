@@ -1,0 +1,33 @@
+<div class="vh-100">
+
+  <div class="row vh-100">
+    <!-- Left Container -->
+    <div class="col-md-5">
+      <div
+        class="col col-lg-10 mx-auto d-flex flex-column justify-content-center align-items-center h-100 px-4"
+      >
+        <ng-content select="[left]"></ng-content>
+      </div>
+    </div>
+    <!-- Right Container -->
+    <div class="col-md-7 right-container-decoration rounded-start-4">
+      <div class="right-container w-100 h-100 d-flex flex-column">
+        <img
+          alt="Kognia Logo"
+          src="svg/kognia-logo-hor-dark.svg"
+          width="200"
+          class="align-self-start m-4"
+        />
+        <div
+          class="left-container__content w-100 align-self-center my-auto text-center text-white"
+        >
+          <cx-logo></cx-logo>
+          <ng-content select="[right]"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

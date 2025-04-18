@@ -9,13 +9,14 @@
     [placeholder]="placeholder"
     [formControl]="control"
     required
+    autocomplete="email"
   />
   <div *ngIf="control.touched && control.invalid" class="invalid-feedback">
     <small *ngIf="control.errors?.['required']" class="text-danger"
       >* El correo es obligatorio</small
     >
     <small *ngIf="control.errors?.['email']" class="text-danger"
-      >Ingresa un correo válido</small
+      >* Ingresa un correo válido</small
     >
   </div>
 </div>

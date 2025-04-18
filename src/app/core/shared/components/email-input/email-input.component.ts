@@ -7,7 +7,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './email-input.component.html',
-  styleUrl: './email-input.component.scss',
+  styles: ``,
 })
 export class EmailInputComponent {
   @Input() control!: FormControl;
