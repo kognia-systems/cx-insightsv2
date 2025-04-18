@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="row vh-100">
+    <!-- Left Container -->
+    <div class="col-md-5">
+      <div
+        class="col col-lg-10 mx-auto d-flex flex-column justify-content-center align-items-center h-100 px-4"
+      >
+        <form
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+          class="w-100 needs-validation"
+        >
+          <h3 class="form-title text-secondary">Còdigo de seguridad</h3>
+
+          <div class="mb-3">
+            <label for="otp" class="form-label">OTP</label>
+            <input
+              id="otp"
+              type="text"
+              class="form-control"
+              formControlName="otp"
+              [class.is-invalid]="otp?.touched && otp?.invalid"
+              [class.is-valid]="otp?.touched && otp?.valid"
+              maxlength="6"
+              required
+            />
+            <div *ngIf="otp?.touched && otp?.invalid" class="invalid-feedback">
+              <small *ngIf="otp?.errors?.['required']" class="text-danger"
+                >* El código es obligatorio</small
+              >
+              <small *ngIf="otp?.errors?.['pattern']" class="text-danger"
+                >* Ingresa un código válido</small
+              >
+              <small *ngIf="otp?.errors?.['minlength']" class="text-danger">
+                * La código esta incompleto, mínimo
+                {{ otp?.errors?.['minlength'].requiredLength }}
+              </small>
+            </div>
+          </div>
+
+          <p class="fs-caption fw-light">
+            Revisa su bandeja de entrada o correo no deseado para el obtener el
+            código de seguridad.
+          </p>
+
+          <button type="submit" class="btn btn-primary text-white w-100">
+            Verificar código
+          </button>
+        </form>
+        <a
+          [routerLink]="['../../']"
+          class="mt-2 btn btn-outline-secondary w-100"
+          >Volver</a
+        >
+      </div>
+    </div>
+    <!-- Right Container -->
+    <div class="col-md-7 right-container-decoration rounded-start-4">
+      <div class="right-container w-100 h-100 d-flex flex-column">
+        <img
+          alt="Kognia Logo"
+          src="svg/kognia-logo-hor-dark.svg"
+          width="200"
+          class="align-self-start m-4"
+        />
+        <div
+          class="left-container__content w-100 align-self-center my-auto text-center text-white"
+        >
+          <cx-logo></cx-logo>
+          <app-welcome-animated-text></app-welcome-animated-text>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

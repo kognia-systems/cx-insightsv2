@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
 import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
 import { EmailInputComponent } from '@components/email-input/email-input.component';
@@ -19,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     CxLogoComponent,
     EmailInputComponent,

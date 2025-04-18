@@ -60,19 +60,12 @@ export class LoginPageComponent {
       const userCredentials = await this.authService.login(email, password);
 
       if (userCredentials) {
-        this.router.navigate(['/dashboard']);
-        this.userService.getUserById(userCredentials.user.uid).subscribe({
-          next: (user) => {
-            if (user) {
-              console.log(user);
-
-              sessionStorage.setItem('user', JSON.stringify(user));
-
-              this.toastService.success('Bienvenido a la aplicación');
-              this.router.navigate(['/dashboard']);
-            }
-          },
-        });
+        localStorage.setItem('userId', userCredentials.user.uid);
+        this.toastService.success(
+          'Se ha enviado un código de verificación a tu correo',
+          'OTP Enviado'
+        );
+        this.router.navigate(['/auth/otp-verification']);
       }
     } catch (error) {
       this.toastService.error(

@@ -18,6 +18,13 @@ export const routes: Routes = [
             '@auth/pages/reset-password-page/reset-password-page.component'
           ).then((m) => m.ResetPasswordPageComponent),
       },
+      {
+        path: 'otp-verification',
+        loadComponent: () =>
+          import(
+            '@auth/pages/otp-page/otp-page.component'
+          ).then((m) => m.OtpPageComponent),
+      },
     ],
   },
   {
