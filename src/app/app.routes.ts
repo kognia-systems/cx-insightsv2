@@ -66,15 +66,22 @@ export const routes: Routes = [
           {
             path: 'blueprints',
             loadComponent: () =>
-              import('@audit/audit-blueprints-page/audit-blueprints-page.component').then(
-                (m) => m.AuditBlueprintsPageComponent
-              ),
+              import(
+                '@audit/audit-blueprints-page/audit-blueprints-page.component'
+              ).then((m) => m.AuditBlueprintsPageComponent),
+          },
+          {
+            path: 'blueprints/details',
+            loadComponent: () =>
+              import(
+                '@audit/audit-blueprint-details-page/audit-blueprint-details-page.component'
+              ).then((m) => m.AuditBlueprintDetailsPageComponent),
           },
         ],
       },
       {
         path: '**',
-        redirectTo: '/dashboard/users',
+        redirectTo: '/dashboard/audit/blueprints',
       },
     ],
   },

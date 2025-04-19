@@ -1,1 +1,130 @@
-<p>audit-blueprints-page works!</p>
+<h2 class="table-title">Listado de Blueprints</h2>
+<div class="card border-0 shadow-sm rounded-3">
+  <div class="card-body">
+    <!-- Sort and Create -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearchChange()"
+        />
+      </div>
+    </div>
+    <!-- Table -->
+    <div class="table-responsive rounded-1">
+      <table class="table table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('modification_date')"
+            >
+              Ultima modificación
+            </th>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('business_id')"
+            >
+              Negocio
+            </th>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('segment_id')"
+            >
+              Segmento
+            </th>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('id')"
+            >
+              Blueprint
+            </th>
+            <th class="text-cx-light-grey fw-semibold text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let blueprint of displayedBlueprints">
+            <td>{{ blueprint.modification_date | date }}</td>
+            <td>{{ blueprint.business_id }}</td>
+            <td>{{ blueprint.segment_id }}</td>
+            <td>{{ blueprint.name }}</td>
+            <td class="d-flex justify-content-center">
+              <a
+                [routerLink]="['/dashboard/audit/blueprints/details']"
+                [queryParams]="{
+                  business_id: blueprint.business_id,
+                  segment_id: blueprint.segment_id,
+                  blueprint_id: blueprint.id
+                }"
+                class="btn btn-sm btn-success rounded-2 text-white py-2 px-3"
+              >
+                Seleccionar
+                <span class="material-icons md-16 text-white">
+                  keyboard_arrow_right
+                </span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="d-flex align-items-center justify-content-end me-3">
+      <div class="d-flex justify-content-end align-items-center me-3">
+        <label for="pageSize" class="me-2">Filas por página:</label>
+        <select
+          id="pageSize"
+          class="form-select w-auto fs-sm"
+          [(ngModel)]="pageSize"
+          (change)="onPageSizeChange()"
+        >
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+        </select>
+      </div>
+      <div class="btn-group btn-group-sm">
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === 1"
+          (click)="changePage(1)"
+        >
+          <span class="material-icons md-18 text-white"> first_page </span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === 1"
+          (click)="changePage(currentPage - 1)"
+        >
+          <span class="material-icons md-18 text-white">
+            keyboard_arrow_left
+          </span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === totalPages"
+          (click)="changePage(currentPage + 1)"
+        >
+          <span class="material-icons md-18 text-white">
+            keyboard_arrow_right
+          </span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === totalPages"
+          (click)="changePage(totalPages)"
+        >
+          <span class="material-icons md-18 text-white"> last_page </span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</div>

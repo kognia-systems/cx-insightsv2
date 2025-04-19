@@ -34,6 +34,25 @@
         "src/app/modules/users/infrastructure/services/*",
         "src/app/modules/users/infrastructure/models/*",
       ],
+      "@blueprints/*": [
+        "src/app/modules/blueprints/presentation/pages/*",
+        "src/app/modules/blueprints/infrastructure/services/*",
+        "src/app/modules/blueprints/infrastructure/models/*",
+      ],
+      "@criterias/*": [
+        "src/app/modules/criterias/infrastructure/services/*",
+        "src/app/modules/criterias/infrastructure/models/*",
+      ],
+      "@business/*": [
+        "src/app/modules/business/presentation/pages/*",
+        "src/app/modules/business/infrastructure/services/*",
+        "src/app/modules/business/infrastructure/models/*",
+      ],
+      "@segments/*": [
+        "src/app/modules/segments/presentation/pages/*",
+        "src/app/modules/segments/infrastructure/services/*",
+        "src/app/modules/segments/infrastructure/models/*",
+      ],
       "@audit/*": [
         "src/app/modules/audit/presentation/pages/*",
       ],

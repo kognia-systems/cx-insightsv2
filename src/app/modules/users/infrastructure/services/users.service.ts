@@ -3,7 +3,6 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 import { UserModel } from '../models/user-model';
-import { UserCredential } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
