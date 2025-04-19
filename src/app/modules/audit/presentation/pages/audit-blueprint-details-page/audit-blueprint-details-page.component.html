@@ -1,0 +1,53 @@
+<div
+  *ngIf="!blueprint"
+  class="d-flex justify-content-center align-items-center h-100"
+>
+  <div class="spinner-border text-primary me-3" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+  <p class="lead mb-0">Cargando...</p>
+</div>
+
+<div *ngIf="blueprint" class="container">
+  <h2 class="page-title">{{ blueprint.name }}</h2>
+  <h2 class="page-subtitle fw-semibold">
+    {{ businessName }} | {{ segmentName }}
+  </h2>
+  <p class="fs-6 text-secondary">
+    Última modificiación: {{ blueprint.modification_date }}
+  </p>
+
+  <div class="row mt-4">
+    <div class="col-12 col-lg-4">
+      <app-blueprint-section-card
+        [icon]="'ph-list-checks'"
+        [iconColor]="'text-blue'"
+        [title]="'Criterios'"
+        [description]="
+          'Identifique los criterios de evaluación para la auditoría de llamadas.'
+        "
+        (onClick)="goTo('')"
+      >
+      </app-blueprint-section-card>
+    </div>
+    <div class="col-12 col-lg-4">
+      <app-blueprint-section-card
+        [icon]="'ph-file-audio'"
+        [title]="'Audios'"
+        [description]="'Carga manualmente los audios de las llamadas que quieras auditar.'"
+        (onClick)="goTo('')"
+      >
+      </app-blueprint-section-card>
+    </div>
+    <div class="col-12 col-lg-4">
+      <app-blueprint-section-card
+        [icon]="'ph-check-square-offset'"
+        [description]="'Visualiza los resultados de las llamadas procesadas y realiza auditorías.'"
+        [iconColor]="'text-cyan'"
+        [title]="'Resultados'"
+        (onClick)="goTo('')"
+      >
+      </app-blueprint-section-card>
+    </div>
+  </div>
+</div>

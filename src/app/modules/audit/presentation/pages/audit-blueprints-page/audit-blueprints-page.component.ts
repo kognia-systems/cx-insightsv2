@@ -33,7 +33,7 @@ export class AuditBlueprintsPageComponent {
   ) {}
 
   ngOnInit(): void {
-    this.navbarTitleService.setTitle('Administración de usuarios');
+    this.navbarTitleService.setTitle('Módulo de auditoría');
     this.blueprintService.getAllBlueprints().subscribe({
       next: (blueprints) => {
         console.log(blueprints);

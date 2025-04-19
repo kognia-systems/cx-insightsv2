@@ -1,0 +1,12 @@
+<div class="card-wrapper" (click)="onClick.emit()">
+  <div class="card-inner">
+    <div class="icon-left me-3">
+      <!-- <i class="material-icons md-36" [ngClass]="iconColor">{{ icon }}</i> -->
+      <i class="fs-1 ph" [ngClass]="[icon, iconColor]" ></i>
+    </div>
+    <div class="card-content">
+      <h5 class="fs-5">{{ title }}</h5>
+      <p class="fs-sm text-secondary">{{ description }}</p>
+    </div>
+  </div>
+</div>

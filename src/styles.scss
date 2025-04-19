@@ -33,9 +33,10 @@ $cx-light-grey3: #E7E7E9;
 
 // Custom colors
 $custom-colors: (
+  "blue": #0d6efd,
   "primary-kognia": #00FFFF,
   "secondary-kognia": #FF39EF,
-  "cyan": cyan,
+  "cyan": #0dcaf0,
   "cx-text": #191919,
   "cx-hint": #FAFAFA,
   "cx-blue": #15263A,
@@ -70,9 +71,16 @@ tbody {
   font-weight: 300;
 }
 
-.table-title {
+.page-title {
   font-weight: 500;
   font-family: 'Bebas Neue', sans-serif;
+}
+
+.page-subtitle {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: $secondary;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn {
