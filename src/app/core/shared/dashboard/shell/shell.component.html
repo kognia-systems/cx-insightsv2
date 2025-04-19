@@ -6,7 +6,36 @@
   <div class="flex-grow-1 d-flex flex-column">
     <!-- Navbar superior -->
     <nav class="navbar navbar-light bg-white border-bottom p-3">
-      <span class="navbar-brand mb-0 h5">Mi Panel</span>
+      <span class="navbar-brand mb-0 h5">{{ title }}</span>
+      <div class="dropdown">
+        <a
+          class="d-flex align-items-center text-decoration-none dropdown-toggle"
+          href="#"
+          id="userDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://ui-avatars.com/api/?name=Super+User&background=0d6efd&color=fff"
+            alt="avatar"
+            width="32"
+            height="32"
+            class="rounded me-2"
+          />
+          <span class="me-3">{{ username }}</span>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="userDropdown"
+        >
+          <li>
+            <a class="dropdown-item" href="#" (click)="logout()">
+              <span class="material-icons me-2 fs-6 text-danger">logout</span>
+              Cerrar sesión</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Contenido dinámico -->

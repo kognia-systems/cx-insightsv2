@@ -72,8 +72,11 @@ export class OtpPageComponent {
       this.userService.getUserById(userId).subscribe({
         next: (user) => {
           if (user) {
-            this.localStorageService.setUser(user);
-            this.localStorageService.clearUserId();
+            this.localStorageService.setFullName(user.first_name, user.last_name);
+            this.localStorageService.setCustomer(user.customer);
+            this.localStorageService.setCustomerId(user.customer_id);
+            this.localStorageService.setUserRole(user.role);
+
 
             this.toastService.success('Bienvenido a la aplicación');
 
