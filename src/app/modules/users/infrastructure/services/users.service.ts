@@ -13,8 +13,8 @@ export class UsersService {
   private readonly client = inject(HttpClient);
 
 
-  getUsers(): Observable<UserCredential[]> {
-    return this.client.get<UserCredential[]>(`${environment.baseUrl}/user`);
+  getUsers(): Observable<UserModel[]> {
+    return this.client.get<UserModel[]>(`${environment.baseUrl}/user`);
   }
 
   getUserById(id: string): Observable<UserModel> {

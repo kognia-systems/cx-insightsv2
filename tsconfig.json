@@ -31,13 +31,15 @@
       ],
       "@users/*": [
         "src/app/modules/users/presentation/pages/*",
-        "src/app/modules/users/infrastructure/services/*"
+        "src/app/modules/users/infrastructure/services/*",
+        "src/app/modules/users/infrastructure/models/*",
       ],
       "@audit/*": [
         "src/app/modules/audit/presentation/pages/*",
       ],
-      "@components/*": [
-        "src/app/core/shared/components/*"
+      "@shared/*": [
+        "src/app/core/shared/components/*",
+        "src/app/core/shared/services/*"
       ]
     },
     "lib": [

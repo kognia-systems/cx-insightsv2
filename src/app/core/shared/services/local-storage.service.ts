@@ -10,6 +10,14 @@ export class LocalStorageService {
   private customer = 'customer';
   private customerId = 'customerId';
   private userRole = 'role';
+  private token = 'token';
+
+  setToken(token: string): void {
+    this.storage.setItem(this.token, token);
+  }
+  getToken(): string | null {
+    return this.storage.getItem(this.token);
+  }
 
   setUserId(userId: string): void {
     this.storage.setItem(this.userId, userId);

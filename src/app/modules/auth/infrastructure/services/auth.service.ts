@@ -19,8 +19,4 @@ export class AuthService {
   logout(): Promise<void> {
     return this.auth.signOut();
   }
-
-  get currentUser(): User | null {
-    return this.auth.currentUser
-  }
 }

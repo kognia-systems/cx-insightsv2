@@ -1,1 +1,134 @@
-<p>user-list-page works!</p>
+<h2 class="table-title">Usuarios del sistema</h2>
+<div class="card border-1 shadow-sm">
+  <div class="card-body">
+    <!-- Sort and Create -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearchChange()"
+        />
+      </div>
+      <a
+        class="btn btn-info text-white p-2 rounded-2"
+        [routerLink]="['/dashboard/users/create']"
+      >
+        <span class="material-icons md-18 text-white me-1">add</span>
+        Crear usuario
+      </a>
+    </div>
+    <!-- Table -->
+    <div class="table-responsive rounded-1">
+      <table class="table table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('first_name')"
+            >
+              Nombre
+            </th>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('email')"
+            >
+              Correo
+            </th>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('role')"
+            >
+              Rol
+            </th>
+            <th
+              class="text-cx-light-grey fw-semibold"
+              (click)="changeSort('role')"
+            >
+              Estado
+            </th>
+            <th class="text-cx-light-grey fw-semibold text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of displayedUsers">
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.enabled ? "Habilitado" : "Deshabiliatdo" }}</td>
+            <td class="d-flex justify-content-center">
+              <a
+                type="button"
+                class="btn btn-sm btn-success d-flex align-items-center justify-content-center p-2 rounded-2 me-2"
+              >
+                <span class="material-icons md-18 text-white">edit</span>
+              </a>
+              <a
+                type="button"
+                class="btn btn-sm btn-danger d-flex align-items-center justify-content-center p-2 rounded-2"
+              >
+                <span class="material-icons md-18 text-white">delete</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Pagination -->
+    <nav class="d-flex align-items-center justify-content-end me-3">
+      <div class="d-flex justify-content-end align-items-center me-3">
+        <label for="pageSize" class="me-2">Filas por página:</label>
+        <select
+          id="pageSize"
+          class="form-select w-auto fs-sm"
+          [(ngModel)]="pageSize"
+          (change)="onPageSizeChange()"
+        >
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+        </select>
+      </div>
+      <div class="btn-group btn-group-sm">
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === 1"
+          (click)="changePage(1)"
+        >
+          <span class="material-icons md-18 text-white"> first_page </span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === 1"
+          (click)="changePage(currentPage - 1)"
+        >
+          <span class="material-icons md-18 text-white">
+            keyboard_arrow_left
+          </span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === totalPages"
+          (click)="changePage(currentPage + 1)"
+        >
+          <span class="material-icons md-18 text-white">
+            keyboard_arrow_right
+          </span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          [class.disabled]="currentPage === totalPages"
+          (click)="changePage(totalPages)"
+        >
+          <span class="material-icons md-18 text-white"> last_page </span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</div>

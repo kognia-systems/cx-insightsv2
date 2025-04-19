@@ -7,12 +7,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
-import { SubmitButtonComponent } from '@components/submit-button/submit-button.component';
-import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
+import { CxLogoComponent } from '@shared/cx-logo/cx-logo.component';
+import { SubmitButtonComponent } from '@shared/submit-button/submit-button.component';
+import { WelcomeAnimatedTextComponent } from '@shared/welcome-animated-text/welcome-animated-text.component';
+import { LocalStorageService } from '@shared/local-storage.service';
+import { UsersService } from '@users/users.service';
+
 import { ToastrService } from 'ngx-toastr';
-import { LocalStorageService } from 'src/app/core/shared/services/local-storage.service';
-import { UsersService } from 'src/app/modules/users/infrastructure/services/users.service';
 
 @Component({
   selector: 'app-otp-page',

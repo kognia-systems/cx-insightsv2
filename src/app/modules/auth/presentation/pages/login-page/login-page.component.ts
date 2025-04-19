@@ -12,12 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '@auth/auth.service';
 import { UsersService } from '@users/users.service';
 
-import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
-import { EmailInputComponent } from '@components/email-input/email-input.component';
-import { PasswordInputComponent } from '@components/password-input/password-input.component';
-import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
-import { LocalStorageService } from 'src/app/core/shared/services/local-storage.service';
-import { SubmitButtonComponent } from "@components/submit-button/submit-button.component";
+import { CxLogoComponent } from '@shared/cx-logo/cx-logo.component';
+import { EmailInputComponent } from '@shared/email-input/email-input.component';
+import { PasswordInputComponent } from '@shared/password-input/password-input.component';
+import { SubmitButtonComponent } from "@shared/submit-button/submit-button.component";
+import { WelcomeAnimatedTextComponent } from '@shared/welcome-animated-text/welcome-animated-text.component';
+import { LocalStorageService } from '@shared/local-storage.service';
 
 @Component({
   selector: 'app-login-page',
@@ -68,7 +68,12 @@ export class LoginPageComponent {
       const userCredentials = await this.authService.login(email, password);
 
       if (userCredentials) {
+
+        // const token = await userCredentials.user.getIdToken(true);
+
         this.localStorageService.setUserId(userCredentials.user.uid);
+        // this.localStorageService.setToken(token);
+
         this.toastService.success(
           'Se ha enviado un código de verificación a tu correo',
           'OTP Enviado'

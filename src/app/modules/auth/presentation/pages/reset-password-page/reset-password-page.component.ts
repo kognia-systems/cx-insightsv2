@@ -9,9 +9,9 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@auth/auth.service';
-import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
-import { EmailInputComponent } from '@components/email-input/email-input.component';
-import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
+import { CxLogoComponent } from '@shared/cx-logo/cx-logo.component';
+import { EmailInputComponent } from '@shared/email-input/email-input.component';
+import { WelcomeAnimatedTextComponent } from '@shared/welcome-animated-text/welcome-animated-text.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

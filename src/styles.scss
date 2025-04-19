@@ -1,12 +1,13 @@
 // Definir variables predeterminadas necesarias
 $primary: #ff39ef;
 $secondary: #6c757d;
-$success: #198754;
-$info: #0dcaf0;
+$success: #29D697;
+$info: #46CDFB;
 $warning: #ffc107;
-$danger: #dc3545;
+$danger: #F0635A;
 $light: #f8f9fa;
-$dark: #212529;
+$dark: #15263A;
+// $dark: #212529;
 
 $theme-colors: (
   "primary":    $primary,
@@ -22,10 +23,10 @@ $theme-colors: (
 $primary-kognia: #00FFFF;
 $secondary-kognia: #FF39EF;
 $cx-text: #191919;
-$cx-blue: #0C0C0C;
 $cx-hint: #FAFAFA;
-$cx-dark: #111C2D;
-$cx-dark-blue: #0C0C0C;
+$cx-dark: #0C0C0C;
+$cx-blue: #15263A;
+$cx-dark-blue: #111C2D;
 $cx-light-grey: #B8B6BE;
 $cx-light-grey2: #D0CFD4;
 $cx-light-grey3: #E7E7E9;
@@ -55,7 +56,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: $cx-text;
 }
 
@@ -63,10 +64,23 @@ label {
   font-size: 0.9rem;
   font-weight: 500;
 }
+tbody {
+  font-size: 0.8rem;
+  color: $cx-light-grey;
+  font-weight: 300;
+}
+
+.table-title {
+  font-weight: 500;
+  font-family: 'Bebas Neue', sans-serif;
+}
 
 .btn {
   font-size: 0.9rem;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input::placeholder {
@@ -74,12 +88,16 @@ input::placeholder {
   font-size: 0.9rem;
 }
 
+.fs-sm {
+  font-size: 0.8rem;
+}
+
 .fs-caption {
   font-size: 0.7rem;
 }
 
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: 'Material Icons Outlined';
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */

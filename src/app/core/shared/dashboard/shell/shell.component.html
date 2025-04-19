@@ -6,7 +6,7 @@
   <div class="flex-grow-1 d-flex flex-column">
     <!-- Navbar superior -->
     <nav class="navbar navbar-light bg-white border-bottom p-3">
-      <span class="navbar-brand mb-0 h5">{{ title }}</span>
+      <span class="navbar-brand mb-0 h5">{{ title$ | async }}</span>
       <div class="dropdown">
         <a
           class="d-flex align-items-center text-decoration-none dropdown-toggle"
@@ -39,7 +39,7 @@
     </nav>
 
     <!-- Contenido dinámico -->
-    <main class="p-4">
+    <main class="bg-light vh-100 p-4">
       <router-outlet></router-outlet>
     </main>
   </div>
