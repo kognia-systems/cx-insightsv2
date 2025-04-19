@@ -8,14 +8,16 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '@auth/auth.service';
+import { UsersService } from '@users/users.service';
+
 import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
 import { EmailInputComponent } from '@components/email-input/email-input.component';
 import { PasswordInputComponent } from '@components/password-input/password-input.component';
 import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
-import { AuthService } from '@auth/auth.service';
-import { UsersService } from 'src/app/modules/users/infrastructure/services/users.service';
-import { ToastrService } from 'ngx-toastr';
 import { LocalStorageService } from 'src/app/core/shared/services/local-storage.service';
+import { SubmitButtonComponent } from "@components/submit-button/submit-button.component";
 
 @Component({
   selector: 'app-login-page',
@@ -28,13 +30,15 @@ import { LocalStorageService } from 'src/app/core/shared/services/local-storage.
     WelcomeAnimatedTextComponent,
     EmailInputComponent,
     PasswordInputComponent,
-  ],
+    SubmitButtonComponent,
+],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
   form: FormGroup;
   showPassword = false;
+  isLoading = false;
 
   constructor(
     private router: Router,
@@ -56,6 +60,8 @@ export class LoginPageComponent {
       return;
     }
 
+    this.isLoading = true;
+
     const { email, password } = this.form.value;
 
     try {
@@ -73,6 +79,8 @@ export class LoginPageComponent {
       this.toastService.error(
         'Error al iniciar sesión, por favor verifica tus credenciales'
       );
+    } finally {
+      this.isLoading = false;
     }
   }
 

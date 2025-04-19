@@ -32,9 +32,14 @@
             </label>
           </div>
 
-          <button type="submit" class="btn btn-primary text-white w-100">
-            Ingresar
-          </button>
+          <submit-button
+            class="w-100 mb-3"
+            [isLoading]="isLoading"
+            [label]="'Ingresar'"
+            [loadingText]="'Cargando...'"
+          >
+          </submit-button>
+
         </form>
         <a routerLink="/auth/reset-password" class="mt-3 text-secondary"
           >¿Olvidaste la contaseña?</a

@@ -7,9 +7,9 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () =>
-          import(
-            '@auth/login-page/login-page.component'
-          ).then((m) => m.LoginPageComponent),
+          import('@auth/login-page/login-page.component').then(
+            (m) => m.LoginPageComponent
+          ),
       },
       {
         path: 'reset-password',
@@ -21,9 +21,9 @@ export const routes: Routes = [
       {
         path: 'otp-verification',
         loadComponent: () =>
-          import(
-            '@auth/otp-page/otp-page.component'
-          ).then((m) => m.OtpPageComponent),
+          import('@auth/otp-page/otp-page.component').then(
+            (m) => m.OtpPageComponent
+          ),
       },
     ],
   },
@@ -36,24 +36,41 @@ export const routes: Routes = [
     children: [
       {
         path: 'users',
-        loadComponent: () =>
-          import(
-            '@users/user-list-page/user-list-page.component'
-          ).then((m) => m.UserListPageComponent),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('@users/user-list-page/user-list-page.component').then(
+                (m) => m.UserListPageComponent
+              ),
+          },
+          {
+            path: 'create',
+            loadComponent: () =>
+              import('@users/user-create-page/user-create-page.component').then(
+                (m) => m.UserCreatePageComponent
+              ),
+          },
+          {
+            path: ':id/edit',
+            loadComponent: () =>
+              import('@users/user-edit-page/user-edit-page.component').then(
+                (m) => m.UserEditPageComponent
+              ),
+          },
+        ],
       },
       {
-        path: 'users/create',
-        loadComponent: () =>
-          import(
-            '@users/user-create-page/user-create-page.component'
-          ).then((m) => m.UserCreatePageComponent),
-      },
-      {
-        path: 'users/:id/edit',
-        loadComponent: () =>
-          import(
-            '@users/user-edit-page/user-edit-page.component'
-          ).then((m) => m.UserEditPageComponent),
+        path: 'audit',
+        children: [
+          {
+            path: 'blueprints',
+            loadComponent: () =>
+              import('@audit/audit-blueprints-page/audit-blueprints-page.component').then(
+                (m) => m.AuditBlueprintsPageComponent
+              ),
+          },
+        ],
       },
       {
         path: '**',

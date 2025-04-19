@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CxLogoComponent } from '@components/cx-logo/cx-logo.component';
+import { SubmitButtonComponent } from '@components/submit-button/submit-button.component';
 import { WelcomeAnimatedTextComponent } from '@components/welcome-animated-text/welcome-animated-text.component';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageService } from 'src/app/core/shared/services/local-storage.service';
@@ -21,6 +22,7 @@ import { UsersService } from 'src/app/modules/users/infrastructure/services/user
     RouterModule,
     ReactiveFormsModule,
     CxLogoComponent,
+    SubmitButtonComponent,
     WelcomeAnimatedTextComponent,
   ],
   templateUrl: './otp-page.component.html',
@@ -28,6 +30,7 @@ import { UsersService } from 'src/app/modules/users/infrastructure/services/user
 })
 export class OtpPageComponent {
   form: FormGroup;
+  isLoading = false;
 
   constructor(
     private router: Router,
@@ -53,6 +56,8 @@ export class OtpPageComponent {
       this.form.markAllAsTouched();
       return;
     }
+
+    this.isLoading = true;
 
     const { otp } = this.form.value;
 
@@ -80,6 +85,8 @@ export class OtpPageComponent {
       this.toastService.error(
         'Error al iniciar sesión, por favor verifica tus credenciales'
       );
+    } finally {
+      this.isLoading = false;
     }
   }
 

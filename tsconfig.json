@@ -30,7 +30,11 @@
         "src/app/modules/auth/infrastructure/services/*"
       ],
       "@users/*": [
-        "src/app/modules/users/presentation/pages/*"
+        "src/app/modules/users/presentation/pages/*",
+        "src/app/modules/users/infrastructure/services/*"
+      ],
+      "@audit/*": [
+        "src/app/modules/audit/presentation/pages/*",
       ],
       "@components/*": [
         "src/app/core/shared/components/*"

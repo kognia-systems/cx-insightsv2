@@ -43,9 +43,13 @@
             código de seguridad.
           </p>
 
-          <button type="submit" class="btn btn-primary text-white w-100">
-            Verificar código
-          </button>
+          <submit-button
+            class="w-100"
+            [isLoading]="isLoading"
+            [label]="'Verficar código'"
+            [loadingText]="'Verificando...'"
+          >
+          </submit-button>
         </form>
         <a
           [routerLink]="['../../']"

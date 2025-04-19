@@ -1,0 +1,40 @@
+.sidebar {
+  width: 240px;
+}
+
+p.version {
+  font-size: 10px;
+  font-weight: 300;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.cx-logo-sidebar {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+
+  span {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: white;
+  }
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #00FFFF !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    i {
+      color: #00FFFF !important;
+      font-size: 1rem;
+    }
+}
+
+.nav-pills .nav-link, .nav-pills .show > .nav-link {
+    color: white !important;
+    i {
+      color: white !important;
+      font-size: 1rem;
+    }
+}
