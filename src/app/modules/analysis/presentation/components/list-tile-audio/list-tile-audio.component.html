@@ -1,0 +1,54 @@
+<div
+  class="d-flex align-items-center justify-content-between border rounded p-2 mb-2"
+>
+  <i class="material-icons me-3 text-blue"> audiotrack </i>
+  <div class="text-truncate w-100 me-3">
+    <p class="fs-6 fw-semibold mb-0"> {{ file.name }} </p>
+    <p class="text-secondary mb-0">Tamaño: {{ getFileSize(file) }} </p>
+  </div>
+
+  <div class="w-100 me-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Seleccionar asesor"
+      [(ngModel)]="selectedAgent"
+      (input)="onSearchAsesor(selectedAgent)"
+    />
+
+    <ul
+      *ngIf="filteredAgents.length && selectedAgent"
+      class="list-group position-absolute w-100 z-1"
+      style="max-height: 150px; overflow-y: auto"
+    >
+      <li
+        *ngFor="let asesor of filteredAgents"
+        class="list-group-item list-group-item-action"
+        (click)="onSelectAsesor(asesor)"
+      >
+        <p class="fw-semibold mb-0">{{ asesor.name }}</p>
+        <p>Supervisor: {{ asesor.supervisor }}</p>
+      </li>
+    </ul>
+  </div>
+  <div class="d-flex gap-2">
+    <button
+      *ngIf="audio && !isPlaying"
+      class="btn btn-sm btn-cx-blue"
+      (click)="play()"
+    >
+      <i class="material-icons md-fill text-white"> play_arrow </i>
+    </button>
+    <button
+      *ngIf="audio && isPlaying"
+      class="btn btn-sm btn-cx-blue"
+      (click)="stop()"
+    >
+      <i class="material-icons md-fill text-white"> stop </i>
+    </button>
+
+    <button class="btn btn-sm btn-danger" (click)="removeAudio()">
+      <i class="material-icons md-fill text-white"> delete </i>
+    </button>
+  </div>
+</div>

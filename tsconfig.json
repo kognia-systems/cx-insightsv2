@@ -42,6 +42,7 @@
       "@criterias/*": [
         "src/app/modules/criterias/infrastructure/services/*",
         "src/app/modules/criterias/infrastructure/models/*",
+        "src/app/modules/criterias/presentation/pages/*",
       ],
       "@business/*": [
         "src/app/modules/business/presentation/pages/*",
@@ -55,6 +56,18 @@
       ],
       "@audit/*": [
         "src/app/modules/audit/presentation/pages/*",
+      ],
+      "@analysis/*": [
+        "src/app/modules/analysis/presentation/pages/*",
+        "src/app/modules/analysis/presentation/components/*",
+        "src/app/modules/analysis/infrastructure/models/*",
+      ],
+      "@reports/*": [
+        "src/app/modules/reports/presentation/pages/*",
+      ],
+      "@agents/*": [
+        "src/app/modules/agents/infrastructure/services/*",
+        "src/app/modules/agents/infrastructure/models/*",
       ],
       "@shared/*": [
         "src/app/core/shared/components/*",

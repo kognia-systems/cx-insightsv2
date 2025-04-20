@@ -1,0 +1,44 @@
+.drop-zone {
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &.dragover {
+    // Simula un borde con líneas más separadas
+    background-image: repeating-linear-gradient(
+        to right,
+        #6c757d,
+        #6c757d 4px,
+        transparent 4px,
+        transparent 10px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        #6c757d,
+        #6c757d 4px,
+        transparent 4px,
+        transparent 10px
+      ),
+      repeating-linear-gradient(
+        to right,
+        #6c757d,
+        #6c757d 4px,
+        transparent 4px,
+        transparent 10px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        #6c757d,
+        #6c757d 4px,
+        transparent 4px,
+        transparent 10px
+      );
+    background-position: top, right, bottom, left;
+    background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100%;
+    background-repeat: no-repeat;
+    background-color: #E7E7E9;
+    border-style: dashed;
+  }
+}

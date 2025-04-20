@@ -16,7 +16,7 @@
   <p class="fs-6 text-secondary">
     Última modificiación: {{ blueprint.modification_date }}
   </p>
-
+  <!-- Blueprint section cards -->
   <div class="row mt-4">
     <div class="col-12 col-lg-4">
       <app-blueprint-section-card
@@ -26,7 +26,7 @@
         [description]="
           'Identifique los criterios de evaluación para la auditoría de llamadas.'
         "
-        (onClick)="goTo('')"
+        (onClick)="goTo('/dashboard/audit/blueprints/details/criterias')"
       >
       </app-blueprint-section-card>
     </div>
@@ -35,7 +35,7 @@
         [icon]="'ph-file-audio'"
         [title]="'Audios'"
         [description]="'Carga manualmente los audios de las llamadas que quieras auditar.'"
-        (onClick)="goTo('')"
+        (onClick)="goTo('/dashboard/audit/blueprints/details/upload-audios')"
       >
       </app-blueprint-section-card>
     </div>
@@ -45,9 +45,16 @@
         [description]="'Visualiza los resultados de las llamadas procesadas y realiza auditorías.'"
         [iconColor]="'text-cyan'"
         [title]="'Resultados'"
-        (onClick)="goTo('')"
+        (onClick)="goTo('/dashboard/audit/blueprints/details/process-report')"
       >
       </app-blueprint-section-card>
     </div>
   </div>
+
+  <!-- Views -->
+   <div class="mt-4 h-100">
+    <div class="card p-3">
+      <router-outlet></router-outlet>
+    </div>
+   </div>
 </div>

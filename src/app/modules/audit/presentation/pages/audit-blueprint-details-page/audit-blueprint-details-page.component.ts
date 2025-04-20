@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { NavbarTitleService } from '../../../../../core/shared/services/navbar-title.service';
 import { BlueprintsService } from '@blueprints/blueprints.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BlueprintModel } from '@blueprints/blueprint-model';
 import { CommonModule } from '@angular/common';
 import { BusinessService } from '../../../../business/infrastructure/services/business.service';
 import { SegmentsService } from '@segments/segments.service';
-import { BlueprintSectionCardComponent } from "../../../../../core/shared/components/blueprint-section-card/blueprint-section-card.component";
+import { BlueprintSectionCardComponent } from '../../../../../core/shared/components/blueprint-section-card/blueprint-section-card.component';
 
 @Component({
   selector: 'app-audit-blueprint-details-page',
   standalone: true,
-  imports: [CommonModule, BlueprintSectionCardComponent],
+  imports: [CommonModule, RouterModule, BlueprintSectionCardComponent],
   templateUrl: './audit-blueprint-details-page.component.html',
   styleUrl: './audit-blueprint-details-page.component.scss',
 })
@@ -21,6 +21,7 @@ export class AuditBlueprintDetailsPageComponent {
   segmentName: string | null = null;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private titleService: NavbarTitleService,
     private blueprintService: BlueprintsService,
@@ -40,21 +41,27 @@ export class AuditBlueprintDetailsPageComponent {
       });
 
       this.segmentsService
-      .getSegmentById(businessId, segmentId)
+        .getSegmentById(businessId, segmentId)
         .subscribe((segment) => {
           this.segmentName = segment.name;
         });
 
-        this.blueprintService
+      this.blueprintService
         .getBlueprintById(businessId, segmentId, blueprint_id)
         .subscribe((blueprint) => {
           this.blueprint = blueprint;
         });
-      });
-    }
+    });
+  }
 
-    goTo(route: string) {
-      throw new Error('Method not implemented.');
-    }
-
+  goTo(route: string) {
+    this.router.navigate([route], {
+      relativeTo: this.route,
+      queryParams: {
+        blueprint_id: this.blueprint?.id,
+        business_id: this.blueprint?.business_id,
+        segment_id: this.blueprint?.segment_id,
+      },
+    });
+  }
 }

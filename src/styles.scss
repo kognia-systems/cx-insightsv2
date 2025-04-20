@@ -97,11 +97,11 @@ input::placeholder {
 }
 
 .fs-sm {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .fs-caption {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 .material-icons {
@@ -128,6 +128,7 @@ input::placeholder {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+.material-icons.md-fill { font-family: 'Material Icons'; }
 .material-icons.md-14 { font-size: 14px; }
 .material-icons.md-16 { font-size: 16px; }
 .material-icons.md-18 { font-size: 18px; }
